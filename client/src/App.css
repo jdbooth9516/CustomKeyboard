@@ -1,0 +1,19 @@
+.App {
+  color: aliceblue;
+  text-align: center;
+  background-image: linear-gradient(to bottom right, white, #282c34);
+  height: 100vh;
+}
+
+.main-body {
+  height: 100vh;
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0),
+      #000000
+    ),
+    url("./static/advantage-video-productions-OQAZ_unAWsY-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: normal;
+}
