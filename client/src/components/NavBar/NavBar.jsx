@@ -20,7 +20,7 @@ const NavBar = () => {
     <div>
       <Navbar className="navbar" color="faded" dark>
         <NavbarBrand href="/" className="mr-auto">
-          reactstrap
+          customKeys
         </NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>

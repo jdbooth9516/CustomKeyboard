@@ -1,0 +1,19 @@
+.form-container {
+  display: flex;
+  max-width: 50vh;
+  justify-content: center;
+  align-items: center;
+  padding: 15vh;
+  margin-left: 30vh;
+}
+
+.reg-submit {
+  margin-top: 5vh;
+  background-color: rgba(255, 255, 255, 0.13);
+  color: rgb(0, 216, 0);
+  border: 2px rgb(0, 216, 0) solid;
+  border-radius: 4px;
+  min-height: 2em;
+  min-width: 6em;
+  box-shadow: rgb(0, 216, 0) 0 0 0.5em 0;
+}

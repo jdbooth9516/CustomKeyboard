@@ -2,11 +2,11 @@
   color: aliceblue;
   text-align: center;
   background-image: linear-gradient(to bottom right, white, #282c34);
-  height: 100vh;
+  height: 60vh;
 }
 
 .main-body {
-  height: 100vh;
+  height: 95vh;
   background-image: linear-gradient(
       to bottom right,
       rgba(255, 255, 255, 0),
