@@ -40,8 +40,11 @@ function App() {
 
               <div className="info-card">
                 <h4>Ready to Build</h4>
-                <p> Click here to start building your keyboard</p>
-                <button ClassName=" build-btn">Build it</button>
+                <p>
+                  Know what you want? Click here to start building your custom
+                  keyboard.
+                </p>
+                <button className="build-btn">Build it</button>
               </div>
             </div>
           </div>
