@@ -7,15 +7,25 @@ import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import Registration from "./components/Registration/Registration";
 import Information from "./components/Information/Information";
-
-console.log(window.location);
+import Login from "./components/Login/Login";
+import Logout from "./components/Logout/Logout";
 
 function App() {
   const [infoSwitch, setInfoSwitch] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    getLoggedInUser();
+  }, [user]);
+
+  const getLoggedInUser = () => {
+    const loggedUser = localStorage.getItem("user");
+    setUser(loggedUser);
+  };
 
   return (
     <div className="App">
-      <NavBar></NavBar>
+      <NavBar user={user}></NavBar>
       {window.location.pathname == "/" && (
         <div>
           <div className="main-body">
@@ -57,6 +67,13 @@ function App() {
       <div>
         <Switch>
           <Route path="/register" component={Registration} />
+          <Route
+            path="/login"
+            render={(props) => (
+              <Login {...props} getLoggedInUser={getLoggedInUser} />
+            )}
+          />
+          <Route path="/logout" component={Logout} />
         </Switch>
       </div>
     </div>

@@ -11,7 +11,7 @@ import {
 
 import "./NavBar.css";
 
-const NavBar = () => {
+const NavBar = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
@@ -29,9 +29,11 @@ const NavBar = () => {
               <NavLink href="/Register/">Register</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
+              {!props.user ? (
+                <NavLink href="/login/">Login</NavLink>
+              ) : (
+                <NavLink href="/logout/">Logout</NavLink>
+              )}
             </NavItem>
           </Nav>
         </Collapse>
