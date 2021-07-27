@@ -4,8 +4,9 @@ import Layout from "../Layout/Layout";
 import Switches from "../Switches/Switches";
 import Services from "../Services/Services";
 import Extras from "../Extras/Extras";
+import ConfirmBuild from "../ConfirmBuild/ConfirmBuild";
 
-const BuildForm = () => {
+const BuildForm = (props) => {
   // rendering hooks
   const [welcomeVis, setWelcomeVis] = useState(true);
   const [layoutVis, setLayoutVis] = useState(false);
@@ -66,6 +67,15 @@ const BuildForm = () => {
               setExtraChoice={setExtraChoice}
               setExtraVis={setExtraVis}
               setConfirmVis={setConfirmVis}
+            />
+          ) : null}
+          {confirmVis ? (
+            <ConfirmBuild
+              layoutChoice={layoutChoice}
+              switchChoice={switchChoice}
+              serviceChoice={serviceChoice}
+              extraChoice={extraChoice}
+              user={props.user}
             />
           ) : null}
         </div>

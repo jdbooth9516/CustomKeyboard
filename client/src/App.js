@@ -13,14 +13,15 @@ import BuildForm from "./components/Buildform/BuildForm";
 
 function App() {
   const [infoSwitch, setInfoSwitch] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     getLoggedInUser();
-  }, [user]);
+  }, []);
 
   const getLoggedInUser = () => {
-    const loggedUser = localStorage.getItem("user");
+    const loggedUser = JSON.parse(localStorage.getItem("user"));
+    console.log(loggedUser);
     setUser(loggedUser);
   };
 
@@ -80,7 +81,10 @@ function App() {
             )}
           />
           <Route path="/logout" component={Logout} />
-          <Route path="/build" component={BuildForm} />
+          <Route
+            path="/build"
+            render={(props) => <BuildForm {...props} user={user} />}
+          />
         </Switch>
       </div>
     </div>
