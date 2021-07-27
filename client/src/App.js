@@ -9,6 +9,7 @@ import Registration from "./components/Registration/Registration";
 import Information from "./components/Information/Information";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
+import BuildForm from "./components/Buildform/BuildForm";
 
 function App() {
   const [infoSwitch, setInfoSwitch] = useState(false);
@@ -54,7 +55,12 @@ function App() {
                   Know what you want? Click here to start building your custom
                   keyboard.
                 </p>
-                <button className="build-btn">Build it</button>
+                <button
+                  className="build-btn"
+                  onClick={() => (window.location.href = "/build")}
+                >
+                  Build It
+                </button>
               </div>
             </div>
           </div>
@@ -74,6 +80,7 @@ function App() {
             )}
           />
           <Route path="/logout" component={Logout} />
+          <Route path="/build" component={BuildForm} />
         </Switch>
       </div>
     </div>

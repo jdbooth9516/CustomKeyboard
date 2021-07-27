@@ -1,0 +1,20 @@
+.Layout-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+}
+
+.cards-container {
+  margin-top: 10vh;
+}
+
+.layout-card {
+  flex: 1 1 33%;
+  background-color: rgba(240, 248, 255, 0.733);
+  color: rgb(39, 39, 39);
+  border-radius: 3px;
+  margin: 1vh 1vw;
+  padding: 0.5em 1em;
+}
