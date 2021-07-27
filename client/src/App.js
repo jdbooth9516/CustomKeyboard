@@ -10,18 +10,20 @@ import Information from "./components/Information/Information";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import BuildForm from "./components/Buildform/BuildForm";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 
 function App() {
   const [infoSwitch, setInfoSwitch] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     getLoggedInUser();
+    console.log(user);
   }, []);
 
   const getLoggedInUser = () => {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
-    console.log(loggedUser);
+
     setUser(loggedUser);
   };
 
@@ -84,6 +86,10 @@ function App() {
           <Route
             path="/build"
             render={(props) => <BuildForm {...props} user={user} />}
+          />
+          <Route
+            path="/cart"
+            render={(props) => <ShoppingCart {...props} user={user} />}
           />
         </Switch>
       </div>

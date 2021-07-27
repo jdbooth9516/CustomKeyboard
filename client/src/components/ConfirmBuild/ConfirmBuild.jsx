@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import "./ConfirmBuild.css";
 
 const ConfirmBuild = (props) => {
   const choices = {
@@ -11,7 +12,7 @@ const ConfirmBuild = (props) => {
     Extras: props.extraChoice.id,
   };
 
-  const [build, setBuild] = useState({});
+  const [build, setBuild] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const submitBuild = async () => {
@@ -31,24 +32,22 @@ const ConfirmBuild = (props) => {
     try {
       const response = await axios.get("http://localhost:8000/build/");
       setBuild(response.data);
-      console.log(response.data);
-      setTimeout(() => {
-        createCart(build);
-      }, 1000);
+
+      createCart(response.data);
     } catch (error) {
       console.log(error.response.data);
     }
   };
 
-  const createCart = async () => {
-    const cartBody = { User: props.user.id, Build: build[1].id };
-    const formatedBody = JSON.stringify(cartBody);
-    console.log(formatedBody);
+  const createCart = async (newBuild) => {
+    const totalLenght = newBuild.length - 1;
+    const cartBody = { User: props.user.id, Build: newBuild[totalLenght].id };
     try {
       const response = await axios.post(
         "http://localhost:8000/cart/",
         cartBody
       );
+      setLoading(false);
       <Redirect to="/cart" />;
     } catch (error) {
       console.log(error.response.data);
@@ -57,27 +56,28 @@ const ConfirmBuild = (props) => {
 
   return (
     <div className="confirm-container">
-      {loading ? (
+      {!loading ? (
         <div className="confirm-body">
-          <div>
+          <div className="confirm-section">
             <h5>Layout</h5>
             <h6>{props.layoutChoice.Name}</h6>
           </div>
-          <div>
+          <div className="confirm-section">
             <h5>Switch</h5>
             <h6>{props.switchChoice.Name}</h6>
           </div>
-          <div>
+          <div className="confirm-section">
             <h5>Services</h5>
             <h6>{props.serviceChoice.Name}</h6>
           </div>
-          <div>
+          <div className="confirm-section">
             <h5>Extras</h5>
             <h6>{props.extraChoice.Name}</h6>
           </div>
           <button
+            className=" confirm-btn"
             onClick={() => {
-              createCart();
+              submitBuild();
             }}
           >
             Confirm

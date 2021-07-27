@@ -37,8 +37,13 @@ const NavBar = (props) => {
                 </NavItem>
               ))
             ) : (
-              <NavLink href="/logout/">Logout</NavLink>
+              <NavItem>
+                <NavLink href="/logout/">Logout</NavLink>
+              </NavItem>
             )}
+            <NavItem>
+              <NavLink href="/cart/">Shopping Cart</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
