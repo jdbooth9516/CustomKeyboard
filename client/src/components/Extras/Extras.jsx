@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Extras = (props) => {
   const [extrasOptions, setExtrasOptions] = useState([]);
+  let running_price = props.totalPrice;
 
   useEffect(() => {
     getExtras();
@@ -15,6 +16,7 @@ const Extras = (props) => {
 
   const handleChoice = (choice) => {
     props.setExtraChoice(choice);
+    props.setTotalPrice((running_price += choice.Price));
     props.setExtraVis(false);
     props.setConfirmVis(true);
   };
@@ -44,6 +46,10 @@ const Extras = (props) => {
         <h2>extras</h2>
       </div>
       <div className="cards-container">{extras}</div>
+      <div classname="total-price">
+        <h3>Build Cost</h3>
+        <h3>$ {props.totalPrice} </h3>
+      </div>
     </div>
   );
 };

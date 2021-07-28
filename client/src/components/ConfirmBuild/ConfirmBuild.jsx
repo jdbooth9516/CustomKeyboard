@@ -5,11 +5,12 @@ import "./ConfirmBuild.css";
 
 const ConfirmBuild = (props) => {
   const choices = {
-    Name: "custom",
+    Name: props.nameChoice,
     Layout: props.layoutChoice.id,
     Switch: props.switchChoice.id,
     Services: props.serviceChoice.id,
     Extras: props.extraChoice.id,
+    Price: props.totalPrice,
   };
 
   const [build, setBuild] = useState(null);
@@ -41,14 +42,19 @@ const ConfirmBuild = (props) => {
 
   const createCart = async (newBuild) => {
     const totalLenght = newBuild.length - 1;
-    const cartBody = { User: props.user.id, Build: newBuild[totalLenght].id };
+    const cartBody = {
+      User: props.user.id,
+      Build: newBuild[totalLenght].id,
+      Price: props.totalPrice,
+      Build_name: props.nameChoice,
+    };
     try {
       const response = await axios.post(
         "http://localhost:8000/cart/",
         cartBody
       );
       setLoading(false);
-      <Redirect to="/cart" />;
+      window.location.href = "/cart/";
     } catch (error) {
       console.log(error.response.data);
     }
@@ -73,6 +79,10 @@ const ConfirmBuild = (props) => {
           <div className="confirm-section">
             <h5>Extras</h5>
             <h6>{props.extraChoice.Name}</h6>
+          </div>
+          <div className="confirm-section">
+            <h5>Build Cost</h5>
+            <h6>{props.totalPrice}</h6>
           </div>
           <button
             className=" confirm-btn"

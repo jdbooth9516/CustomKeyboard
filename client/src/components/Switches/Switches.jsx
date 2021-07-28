@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Switches = (props) => {
   const [switchesOptions, setSwitchesOptions] = useState([]);
+  let running_price = props.totalPrice;
 
   useEffect(() => {
     getSwitches();
@@ -15,6 +16,7 @@ const Switches = (props) => {
 
   const handleChoice = (choice) => {
     props.setSwitchChoice(choice);
+    props.setTotalPrice((running_price += choice.Price));
     props.setSwitchVis(false);
     props.setVis(true);
   };
@@ -44,6 +46,10 @@ const Switches = (props) => {
         <h2>Switches</h2>
       </div>
       <div className="cards-container">{switches}</div>
+      <div classname="total-price">
+        <h3>Build Cost</h3>
+        <h3>$ {props.totalPrice} </h3>
+      </div>
     </div>
   );
 };

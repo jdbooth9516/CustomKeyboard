@@ -17,8 +17,8 @@ const ShoppingCart = (props) => {
 
   const builds = carts.map((cart) => (
     <div>
-      <h3 className="build-name">{cart.Build}</h3>
-      <h5 className="build-price">price</h5>
+      <h3 className="build-name">{cart.Build_name}</h3>
+      <h5 className="build-price">{cart.Price}</h5>
     </div>
   ));
 

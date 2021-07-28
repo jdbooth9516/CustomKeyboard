@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Services = (props) => {
   const [servicesOptions, setServicesOptions] = useState([]);
+  let running_price = props.totalPrice;
 
   useEffect(() => {
     getServices();
@@ -15,6 +16,7 @@ const Services = (props) => {
 
   const handleChoice = (choice) => {
     props.setServiceChoice(choice);
+    props.setTotalPrice((running_price += choice.Price));
     props.setVis(false);
     props.setExtraVis(true);
   };
@@ -44,6 +46,10 @@ const Services = (props) => {
         <h2>services</h2>
       </div>
       <div className="cards-container">{services}</div>
+      <div className="total-price">
+        <h3>Build Cost</h3>
+        <h3>$ {props.totalPrice} </h3>
+      </div>
     </div>
   );
 };
