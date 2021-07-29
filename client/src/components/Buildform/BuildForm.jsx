@@ -107,8 +107,9 @@ const BuildForm = (props) => {
               switchChoice={switchChoice}
               serviceChoice={serviceChoice}
               extraChoice={extraChoice}
-              user={props.user}
+              user={props.loggedInUser}
               totalPrice={totalPrice}
+              getCart={props.getCart}
             />
           ) : null}
         </div>

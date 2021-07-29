@@ -15,6 +15,7 @@ const ConfirmBuild = (props) => {
 
   const [build, setBuild] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [carts, setCarts] = useState([]);
 
   const submitBuild = async () => {
     try {
@@ -53,6 +54,7 @@ const ConfirmBuild = (props) => {
         "http://localhost:8000/cart/",
         cartBody
       );
+      props.getCart();
       setLoading(false);
       window.location.href = "/cart/";
     } catch (error) {

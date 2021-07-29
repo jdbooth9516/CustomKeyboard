@@ -14,23 +14,35 @@ import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 
 function App() {
   const [infoSwitch, setInfoSwitch] = useState(false);
-  const [user, setUser] = useState({});
+  const [loggedInUser, setUser] = useState({});
+  const [carts, setCarts] = useState([]);
 
   useEffect(() => {
-    getLoggedInUser();
-    console.log(user);
-  }, []);
+    getCart();
+  }, [loggedInUser, setUser]);
 
-  const getLoggedInUser = () => {
+  function getLoggedInUser() {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
-
     setUser(loggedUser);
-  };
+    console.log(loggedInUser);
+  }
+
+  async function getCart() {
+    if (loggedInUser === {}) {
+      console.log("not logged in");
+    } else {
+      const response = await axios.get(
+        `http://localhost:8000/cart/${loggedInUser.id}/`
+      );
+      console.log("downloaded Cart");
+      setCarts(response.data);
+    }
+  }
 
   return (
-    <div className="App">
-      <NavBar user={user}></NavBar>
-      {window.location.pathname == "/" && (
+    <div className="App" onMouseEnter={() => getLoggedInUser()}>
+      <NavBar user={loggedInUser}></NavBar>
+      {window.location.pathname === "/" && (
         <div>
           <div className="main-body">
             <h1 className="welcome-title">Welcome to customKeys</h1>
@@ -85,11 +97,17 @@ function App() {
           <Route path="/logout" component={Logout} />
           <Route
             path="/build"
-            render={(props) => <BuildForm {...props} user={user} />}
+            render={(props) => (
+              <BuildForm
+                {...props}
+                loggedInUser={loggedInUser}
+                getCart={getCart}
+              />
+            )}
           />
           <Route
             path="/cart"
-            render={(props) => <ShoppingCart {...props} user={user} />}
+            render={(props) => <ShoppingCart {...props} carts={carts} />}
           />
         </Switch>
       </div>
