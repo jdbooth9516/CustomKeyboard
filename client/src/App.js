@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
@@ -11,15 +11,23 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import BuildForm from "./components/Buildform/BuildForm";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
+import Employeeportal from "./components/Employeeportal/Employeeportal";
 
 function App() {
   const [infoSwitch, setInfoSwitch] = useState(false);
-  const [loggedInUser, setUser] = useState({});
+  const [loggedInUser, setUser] = useState({
+    Role: "none",
+  });
   const [carts, setCarts] = useState([]);
+  console.log(loggedInUser);
+
+  useEffect(() => {
+    getLoggedInUser();
+  }, []);
 
   useEffect(() => {
     getCart();
-  }, [loggedInUser, setUser]);
+  }, [loggedInUser]);
 
   function getLoggedInUser() {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
@@ -28,7 +36,7 @@ function App() {
   }
 
   async function getCart() {
-    if (loggedInUser === {}) {
+    if (!loggedInUser) {
       console.log("not logged in");
     } else {
       const response = await axios.get(
@@ -40,8 +48,8 @@ function App() {
   }
 
   return (
-    <div className="App" onMouseEnter={() => getLoggedInUser()}>
-      <NavBar user={loggedInUser}></NavBar>
+    <div className="App">
+      <NavBar user={loggedInUser} getLoggedInUser={getLoggedInUser}></NavBar>
       {window.location.pathname === "/" && (
         <div>
           <div className="main-body">
@@ -87,6 +95,7 @@ function App() {
       )}
       <div>
         <Switch>
+          <Route path="/portal" component={Employeeportal} />
           <Route path="/register" component={Registration} />
           <Route
             path="/login"

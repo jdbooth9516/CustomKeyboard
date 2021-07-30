@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { Form, FormGroup, Label, Input, FormText, Button } from "reactstrap";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 import useForm from "../UseForm/UseForm";
 
 import "./Login.css";
@@ -22,7 +22,6 @@ const Login = (props) => {
         console.log(userData);
         localStorage.setItem("user", userData);
         props.getLoggedInUser();
-        window.location.href = "/";
       } catch (error) {
         console.log(error.response.data);
       }
@@ -59,7 +58,7 @@ const Login = (props) => {
             />
           </FormGroup>
           <button onClick={handleSubmit} className="reg-submit">
-            Login
+            <Link to="/">Login</Link>
           </button>
         </Form>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import useForm from "../UseForm/UseForm";
 import axios from "axios";
-import { Form, FormGroup, Label, Input, FormText, Button } from "reactstrap";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 
 import "./Registration.css";
 

@@ -1,0 +1,20 @@
+.orders-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.orders-table {
+  min-width: 35vw;
+  border: rgb(32, 32, 32) 1px solid;
+}
+
+.table-head {
+  border: rgb(31, 31, 31) 2px solid;
+}
+
+.table-body,
+.table-column {
+  border: rgb(31, 31, 31) 1px solid;
+}

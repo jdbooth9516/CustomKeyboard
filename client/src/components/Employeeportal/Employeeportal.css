@@ -1,0 +1,21 @@
+.portal-container {
+  background-color: aliceblue;
+  color: rgb(43, 43, 43);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.employee-options {
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+  padding: 1em;
+  max-width: 20%;
+}
+
+.sales-container {
+  margin: 2em;
+  padding: 1em;
+  min-width: 70%;
+}

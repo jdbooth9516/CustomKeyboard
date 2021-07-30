@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import Layout from "../Layout/Layout";
 import Switches from "../Switches/Switches";
 import Services from "../Services/Services";
@@ -14,7 +13,6 @@ const BuildForm = (props) => {
   const [layoutVis, setLayoutVis] = useState(false);
   const [switchVis, setSwitchVis] = useState(false);
   const [servicesVis, setVis] = useState(false);
-  const [keycapsVis, setKeycapsVis] = useState(false);
   const [extraVis, setExtraVis] = useState(false);
   const [confirmVis, setConfirmVis] = useState(false);
 
