@@ -20,6 +20,7 @@ const Registration = () => {
         );
         //NEED TO ADD A REDIRECT TO LOGIN HERE.
         console.log(values);
+        window.location.href = "/login";
       } catch (error) {
         console.log(error.response.data);
       }

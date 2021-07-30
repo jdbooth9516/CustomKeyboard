@@ -6,6 +6,7 @@ import Extras from "../Extras/Extras";
 import ConfirmBuild from "../ConfirmBuild/ConfirmBuild";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import useForm from "../UseForm/UseForm";
+import "./BuildForm.css";
 
 const BuildForm = (props) => {
   // rendering hooks
@@ -41,8 +42,10 @@ const BuildForm = (props) => {
       <div className="build-form-body">
         {welcomeVis ? (
           <div>
-            <h1>Keyboard Builder</h1>
             <div>
+              <h1>Keyboard Builder</h1>
+            </div>
+            <div className="name-container">
               <Form>
                 <FormGroup>
                   <Label for="Name"> Build Name</Label>

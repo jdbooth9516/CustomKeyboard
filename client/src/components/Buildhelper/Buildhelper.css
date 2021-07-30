@@ -1,0 +1,18 @@
+.question-body {
+  margin: 2em;
+}
+.question-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: centers;
+  margin: 2em;
+}
+
+.question-card {
+  background-color: aliceblue;
+  color: rgb(37, 37, 37);
+  min-width: 15vw;
+  max-width: 20vw;
+  border-radius: 3px;
+}

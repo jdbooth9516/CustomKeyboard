@@ -5,6 +5,7 @@ import "./App.css";
 
 // imported components
 import NavBar from "./components/NavBar/NavBar";
+import Buildhelper from "./components/Buildhelper/Buildhelper";
 import Registration from "./components/Registration/Registration";
 import Information from "./components/Information/Information";
 import Login from "./components/Login/Login";
@@ -26,10 +27,6 @@ function App() {
   console.log(loggedInUser);
 
   useEffect(() => {
-    getLoggedInUser();
-  }, []);
-
-  useEffect(() => {
     getCart();
   }, [loggedInUser]);
 
@@ -49,13 +46,25 @@ function App() {
       console.log("downloaded Cart");
       setCarts(response.data);
     }
+    console.log(carts);
   }
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      onMouseEnter={() => {
+        getLoggedInUser();
+        getCart();
+      }}
+    >
       <NavBar user={loggedInUser} getLoggedInUser={getLoggedInUser}></NavBar>
       {window.location.pathname === "/" && (
-        <div>
+        <div
+          onChange={() => {
+            getLoggedInUser();
+            getCart();
+          }}
+        >
           <div className="main-body">
             <h1 className="welcome-title">Welcome to customKeys</h1>
             <h3 className="welcome-description">
@@ -89,9 +98,18 @@ function App() {
                   Build It
                 </button>
               </div>
+              <div className="info-card">
+                <h4>Need Help</h4>
+                <p>Want to see some recomendations? Click Below</p>
+                <button
+                  className="build-btn"
+                  onClick={() => (window.location.href = "/buildhelper")}
+                >
+                  Recomendations
+                </button>
+              </div>
             </div>
           </div>
-
           <div className="info-section">
             {infoSwitch ? <Information /> : null}
           </div>
@@ -101,13 +119,17 @@ function App() {
         <Switch>
           <Route path="/portal" component={Employeeportal} />
           <Route path="/register" component={Registration} />
+          <Route path="/buildhelper" component={Buildhelper} />
           <Route
             path="/login"
             render={(props) => (
               <Login {...props} getLoggedInUser={getLoggedInUser} />
             )}
           />
-          <Route path="/logout" component={Logout} />
+          <Route
+            path="/logout"
+            render={(props) => <Logout {...props} setUser={setUser} />}
+          />
           <Route
             path="/build"
             render={(props) => (

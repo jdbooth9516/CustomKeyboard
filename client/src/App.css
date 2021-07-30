@@ -6,6 +6,7 @@
     rgb(167, 167, 167),
     #282c34
   );
+  min-height: 100vh;
 }
 
 .main-body {

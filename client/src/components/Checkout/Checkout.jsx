@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Form, FormGroup, Label, Input } from "reactstrap";
+import useForm from "../UseForm/UseForm";
 import "./Checkout.css";
 
 const Checkout = (props) => {
+  const { values, handleChange, handleSubmit } = useForm(() => {});
   const [refresh, setRefresh] = useState(false);
   const [readyForSubmit, setReadyForSubmit] = useState(false);
 
@@ -20,6 +23,9 @@ const Checkout = (props) => {
     Build: props.cart.Build,
     Price: props.cart.Price,
   };
+  useEffect(() => {
+    getPaymentAccount();
+  }, []);
 
   useEffect(() => {
     console.log(props.cart);
@@ -71,6 +77,38 @@ const Checkout = (props) => {
         <div>
           <h3>{props.cart.Build_name}</h3>
           <h5>{props.cart.Price}</h5>
+        </div>
+        <div>
+          <h5>Create New payment method</h5>
+          <Form>
+            <FormGroup>
+              <Label for="Username">User Name</Label>
+              <Input
+                type="text"
+                name="Username"
+                id="Username"
+                placeholder="User Name"
+                defaultValue=""
+                onChange={handleChange}
+                value={values.Username}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="Password">Password</Label>
+              <Input
+                type="password"
+                name="Password"
+                id="Password"
+                placeholder="Password"
+                defaultValue=""
+                onChange={handleChange}
+                value={values.Password}
+              />
+            </FormGroup>
+            <button onClick={handleSubmit} className="reg-submit">
+              Add Payment Method
+            </button>
+          </Form>
         </div>
         <div className="payment-section">
           {!readyForSubmit ? (

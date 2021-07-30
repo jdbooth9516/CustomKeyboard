@@ -21,9 +21,11 @@ const Login = (props) => {
         const userData = JSON.stringify(response.data);
         console.log(userData);
         localStorage.setItem("user", userData);
-        props.getLoggedInUser();
+        console.log(localStorage.getItem("user"));
+        window.location.href = "/";
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error.response);
+        alert("error during login");
       }
     }
     getUser(values);
@@ -58,7 +60,7 @@ const Login = (props) => {
             />
           </FormGroup>
           <button onClick={handleSubmit} className="reg-submit">
-            <Link to="/">Login</Link>
+            Login
           </button>
         </Form>
       </div>

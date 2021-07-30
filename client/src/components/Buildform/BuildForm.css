@@ -1,0 +1,10 @@
+.build-form-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.name-container {
+  max-width: 50%;
+  margin: 1em;
+}
