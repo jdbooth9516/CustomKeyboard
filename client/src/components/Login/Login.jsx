@@ -46,7 +46,7 @@ const Login = (props) => {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="Username">UserName</Label>
+            <Label for="Password">Password</Label>
             <Input
               type="password"
               name="Password"

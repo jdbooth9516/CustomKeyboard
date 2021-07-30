@@ -18,7 +18,7 @@ const SalesTable = (props) => {
 
   return (
     <div className="orders-container">
-      All Orders
+      <h4> Order Histroy </h4>
       <div>
         <table className="orders-table">
           <thead className="table-head">

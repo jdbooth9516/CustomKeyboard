@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SalesChart from "../SalesChart/SalesChart";
+import LayoutChart from "../../Charts/LayoutChart/LayoutChart";
+import SwitchChart from "../../Charts/SwitchChart/SwitchChart";
 import SalesTable from "../SalesTable/SalesTable";
+import ServicesChart from "../../Charts/ServicesChart/ServicesChart";
+import ExtrasChart from "../../Charts/ExtrasChart/ExtrasChart";
+import { Link } from "react-router-dom";
 import "./Employeeportal.css";
 
 const Employeeportal = () => {
   const [orders, setAllOrders] = useState([]);
   const [builds, setSoldBuilds] = useState([]);
   const [sold, setSold] = useState([]);
-  const [chartsVis, setChartsVis] = useState(false);
+  const [chartsVis, setChartsVis] = useState("");
 
   useEffect(() => {
     AllSales();
@@ -54,6 +58,31 @@ const Employeeportal = () => {
     getAllBuilds();
   };
 
+  const createCarts = () => {
+    setTimeout(() => {
+      setChartsVis(
+        <div>
+          <div>
+            <SalesTable sold={sold} />
+          </div>
+          <h4>Customer Interest</h4>
+          <div>
+            <LayoutChart builds={builds} />
+          </div>
+          <div>
+            <SwitchChart builds={builds} />
+          </div>
+          <div>
+            <ServicesChart builds={builds} />
+          </div>
+          <div>
+            <ExtrasChart builds={builds} />
+          </div>
+        </div>
+      );
+    }, 500);
+  };
+
   return (
     <div
       className="employee"
@@ -61,32 +90,40 @@ const Employeeportal = () => {
         AllSales();
       }}
     >
-      employee portal
+      <h3>Employee Portal</h3>
       <div className="portal-container">
         <div className="employee-options">
           <h5>Product Options</h5>
-          <button>Layouts</button>
-          <button>Switches</button>
-          <button>Services</button>
-          <button>Extras</button>
+          <Link to="/LayoutUpdate">
+            <button className="option-btn">Layouts</button>
+          </Link>
+          <Link to="/SwitchUpdate">
+            <button className="option-btn">Switches</button>
+          </Link>
+          <Link to="/ServicesUpdate">
+            <button className="option-btn">Services</button>
+          </Link>
+          <Link to="/ExtrasUpdate">
+            {" "}
+            <button className="option-btn">Extras</button>
+          </Link>
         </div>
         <div className="sales-container">
           <div>
-            sales
             <button
+              className="sales-info"
               onMouseEnter={() => {
                 AllSales();
               }}
               onClick={() => {
                 AllSales();
-                setChartsVis(true);
+                createCarts();
               }}
             >
               get sales info
             </button>
           </div>
-          <div>{chartsVis ? <SalesTable sold={sold} /> : null}</div>
-          <div>{chartsVis ? <SalesChart sold={sold} /> : null}</div>
+          {chartsVis}
         </div>
       </div>
     </div>

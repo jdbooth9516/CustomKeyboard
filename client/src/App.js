@@ -11,7 +11,11 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import BuildForm from "./components/Buildform/BuildForm";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
-import Employeeportal from "./components/Employeeportal/Employeeportal";
+import Employeeportal from "./components/Employee/Employeeportal/Employeeportal";
+import LayoutUpdate from "./components/UpdateForms/LayoutUpdates/LayoutUpdate";
+import SwitchUpdate from "./components/UpdateForms/SwitchUpdate/Switchupdate";
+import ServicesUpdate from "./components/UpdateForms/ServicesUpdate/ServicesUpdate";
+import ExtrasUpdate from "./components/UpdateForms/ExtrasUpdate/ExtrasUpdate";
 
 function App() {
   const [infoSwitch, setInfoSwitch] = useState(false);
@@ -118,6 +122,10 @@ function App() {
             path="/cart"
             render={(props) => <ShoppingCart {...props} carts={carts} />}
           />
+          <Route path="/LayoutUpdate" component={LayoutUpdate} />
+          <Route path="/SwitchUpdate" component={SwitchUpdate} />
+          <Route path="/ServicesUpdate" component={ServicesUpdate} />
+          <Route path="/ExtrasUpdate" component={ExtrasUpdate} />
         </Switch>
       </div>
     </div>

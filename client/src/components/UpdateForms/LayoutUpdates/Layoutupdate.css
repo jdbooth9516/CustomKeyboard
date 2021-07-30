@@ -1,0 +1,10 @@
+.layout-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 1px aliceblue solid;
+}
+
+.layout-view-item {
+  margin: 0.5em;
+}
