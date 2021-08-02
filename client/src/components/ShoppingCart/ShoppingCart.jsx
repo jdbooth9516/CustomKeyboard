@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Checkout from "../Checkout/Checkout";
 import "./ShoppingCart.css";
@@ -12,9 +13,20 @@ const ShoppingCart = (props) => {
   }, []);
 
   const openCart = (cart) => {
+    console.log(cart);
     setSelectedBuild(cart);
     setCheckoutVis(true);
   };
+
+  const deleteCart = async(cart) =>{
+    try { 
+      const response = await axios.delete(`http://localhost:8000/cart/delete/${cart.id}/`)
+      const responseBuild = await axios.delete(`http://localhost:8000/build/${cart.Build}/`)
+      alert("Item deleted")
+    } catch (error) { 
+      console.log(error.response);
+    }
+  }
 
   const builds = carts.map((cart) => (
     <div className="build-card">
@@ -28,6 +40,7 @@ const ShoppingCart = (props) => {
       >
         Order Build
       </button>
+      <button className="delete-btn" onClick={() => {deleteCart(cart)}}>delete</button>
     </div>
   ));
 

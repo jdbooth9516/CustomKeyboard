@@ -22,3 +22,10 @@
   margin: 2vh 1vw;
   border-radius: 4px;
 }
+
+.delete-btn { 
+  font-size: 1.2em;
+  border: 0px ;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(231, 2, 59);
+}

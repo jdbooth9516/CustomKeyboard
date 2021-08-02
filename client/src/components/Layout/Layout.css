@@ -11,10 +11,11 @@
   margin-top: 10vh;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .layout-card {
-  flex: 1 1 33%;
+  flex-basis: 30%;
   background-color: rgba(240, 248, 255, 0.733);
   color: rgb(39, 39, 39);
   border-radius: 3px;
