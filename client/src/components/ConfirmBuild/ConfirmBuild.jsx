@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+
 import "./ConfirmBuild.css";
 
 const ConfirmBuild = (props) => {
@@ -62,38 +62,58 @@ const ConfirmBuild = (props) => {
     }
   };
 
+  const goBack = () => { 
+    let currentTotal = props.totalPrice
+    console.log(props.extraPrice);
+    props.setTotalPrice(currentTotal -= props.extraPrice)
+    props.setConfirmVis(false);
+    props.setExtraVis(true);
+  }
+
   return (
     <div className="confirm-container">
       {!loading ? (
         <div className="confirm-body">
           <div className="confirm-section">
-            <h5>Layout</h5>
+            <h5>Layout Choice</h5>
             <h6>{props.layoutChoice.Name}</h6>
           </div>
           <div className="confirm-section">
-            <h5>Switch</h5>
+            <h5>Switch Choice</h5>
             <h6>{props.switchChoice.Name}</h6>
           </div>
           <div className="confirm-section">
-            <h5>Services</h5>
+            <h5>Services Choice</h5>
             <h6>{props.serviceChoice.Name}</h6>
           </div>
           <div className="confirm-section">
-            <h5>Extras</h5>
+            <h5>Extras Choice</h5>
             <h6>{props.extraChoice.Name}</h6>
           </div>
           <div className="confirm-section">
             <h5>Build Cost</h5>
-            <h6>{props.totalPrice}</h6>
+            <h6> $ {props.totalPrice}</h6>
           </div>
+          <p> If everything looks good hit confirm or hit go back to change a selection. </p>
+          <div className="button-section">
+
           <button
             className=" confirm-btn"
             onClick={() => {
               submitBuild();
             }}
-          >
+            >
             Confirm
           </button>
+          <button
+            className="goback-btn-2"
+            onClick={() => {
+              goBack();
+            }}
+            >
+            Go Back
+          </button>
+            </div>
         </div>
       ) : (
         <div>

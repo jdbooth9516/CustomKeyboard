@@ -21,4 +21,17 @@
   background-color: rgba(240, 248, 255, 0);
   border: rgb(157, 253, 79) 2px solid;
   color: rgb(157, 253, 79);
+  border-radius: 4px;
+  margin: 1em;
+}
+
+
+.goback-btn-2 {
+  
+  font-weight: 600;
+  color: rgb(255, 45, 90); 
+  background-color: #39393900;
+  border: 2px rgb(255, 0, 106) solid;
+  border-radius: 4px;
+  margin: 1em;
 }

@@ -17,9 +17,17 @@ const Extras = (props) => {
   const handleChoice = (choice) => {
     props.setExtraChoice(choice);
     props.setTotalPrice((running_price += choice.Price));
+    props.setExtraPrice(choice.Price)
     props.setExtraVis(false);
     props.setConfirmVis(true);
   };
+
+  const goBack = () => { 
+    let newTotal = props.totalPrice
+    props.setTotalPrice(newTotal -= props.servicePrice)
+    props.setExtraVis(false);
+    props.setVis(true);
+  }
 
   const extras = extrasOptions.map((extra) => (
     <div
@@ -43,13 +51,15 @@ const Extras = (props) => {
   return (
     <div className="layout-container">
       <div>
-        <h2>extras</h2>
+        <h2>Extras</h2>
       </div>
       <div className="cards-container">{extras}</div>
       <div classname="total-price">
         <h3>Build Cost</h3>
         <h3>$ {props.totalPrice} </h3>
       </div>
+      <div><button className="goback-btn" onClick={() => {goBack()}}>Go Back</button></div>
+
     </div>
   );
 };

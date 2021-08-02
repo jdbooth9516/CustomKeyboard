@@ -25,7 +25,7 @@ const Login = (props) => {
         window.location.href = "/";
       } catch (error) {
         console.log(error.response);
-        alert("error during login");
+        alert("Login failed, check username or password. ");
       }
     }
     getUser(values);

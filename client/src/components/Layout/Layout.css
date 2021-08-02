@@ -6,8 +6,11 @@
   padding: 2em;
 }
 
+
 .cards-container {
   margin-top: 10vh;
+  display: flex;
+  flex-direction: row;
 }
 
 .layout-card {
@@ -17,4 +20,22 @@
   border-radius: 3px;
   margin: 1vh 1vw;
   padding: 0.5em 1em;
+}
+
+.total-price { 
+  margin: 2em;
+  padding: 2em;
+}
+
+
+.goback-btn {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: rgb(255, 45, 90); 
+  background-color: #39393900;
+  border: 2px rgb(255, 0, 106) solid;
+  border-radius: 4px;
+  margin: 2em;
+  padding: 0.3em .7em;
+
 }

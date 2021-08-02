@@ -4,6 +4,7 @@ import axios from "axios";
 const Switches = (props) => {
   const [switchesOptions, setSwitchesOptions] = useState([]);
   let running_price = props.totalPrice;
+  
 
   useEffect(() => {
     getSwitches();
@@ -17,9 +18,18 @@ const Switches = (props) => {
   const handleChoice = (choice) => {
     props.setSwitchChoice(choice);
     props.setTotalPrice((running_price += choice.Price));
+    props.setSwitchPrice(choice.Price);
     props.setSwitchVis(false);
     props.setVis(true);
   };
+
+  const goBack = () => { 
+    let newTotal = props.totalPrice
+    props.setTotalPrice(newTotal -= props.layoutPrice)
+    props.setSwitchVis(false);
+    props.setLayoutVis(true);
+  }
+
 
   const switches = switchesOptions.map((switchs) => (
     <div
@@ -50,6 +60,7 @@ const Switches = (props) => {
         <h3>Build Cost</h3>
         <h3>$ {props.totalPrice} </h3>
       </div>
+      <div><button className="goback-btn" onClick={() => {goBack()}}>Go Back</button></div>
     </div>
   );
 };

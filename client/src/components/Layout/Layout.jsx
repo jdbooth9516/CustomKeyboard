@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
+import {Fade} from "@material-ui/core/";
 import axios from "axios";
 import "./Layout.css";
 
 const Layout = (props) => {
   const [layoutOptions, setLayoutOptions] = useState([]);
+  let fadeTrigger = true;
   let running_price = props.totalPrice
 
   useEffect(() => {
     getLayouts();
+    fadeTrigger = true;
   }, []);
 
   const getLayouts = async () => {
@@ -18,9 +21,16 @@ const Layout = (props) => {
   const handleChoice = (choice) => {
     props.setLayoutChoice(choice);
     props.setTotalPrice(running_price += choice.Price);
+    props.setLayoutPrice(choice.Price)
     props.setLayoutVis(false);
     props.setSwitchVis(true);
   };
+
+  const goBack = () => { 
+    
+    props.setLayoutVis(false);
+    props.setWelcomeVis(true);
+  }
 
   const layouts = layoutOptions.map((layout) => (
     <div
@@ -47,10 +57,11 @@ const Layout = (props) => {
         <h2>Layouts</h2>
       </div>
       <div className="cards-container">{layouts}</div>
-      <div classname="total-price">
-        <h3>Build Cost</h3>
+      <div className="total-price"> 
+        <h3>Build Cost</h3>  
         <h3>$ {props.totalPrice} </h3>
       </div>
+      <div><button className="goback-btn" onClick={() => {goBack()}}>Go Back</button></div>
     </div>
   );
 };

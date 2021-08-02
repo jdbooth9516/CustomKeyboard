@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "react-animated-slider": "^2.0.0"
+  }
+}

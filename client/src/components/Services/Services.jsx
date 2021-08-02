@@ -17,9 +17,18 @@ const Services = (props) => {
   const handleChoice = (choice) => {
     props.setServiceChoice(choice);
     props.setTotalPrice((running_price += choice.Price));
+    props.setServicePrice(choice.Price)
     props.setVis(false);
     props.setExtraVis(true);
   };
+
+  const goBack = () => { 
+    let newTotal = props.totalPrice
+    props.setTotalPrice(newTotal -= props.switchPrice)
+    props.setVis(false);
+    props.setSwitchVis(true);
+  }
+
 
   const services = servicesOptions.map((service) => (
     <div
@@ -43,13 +52,14 @@ const Services = (props) => {
   return (
     <div className="layout-container">
       <div>
-        <h2>services</h2>
+        <h2>Services</h2>
       </div>
       <div className="cards-container">{services}</div>
       <div className="total-price">
         <h3>Build Cost</h3>
         <h3>$ {props.totalPrice} </h3>
       </div>
+      <div><button className="goback-btn" onClick={() => {goBack()}}>Go Back</button></div>
     </div>
   );
 };

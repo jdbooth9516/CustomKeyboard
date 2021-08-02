@@ -100,9 +100,9 @@ function App() {
               </div>
               <div className="info-card">
                 <h4>Need Help</h4>
-                <p>Want to see some recomendations? Click Below</p>
+                <p>Want to see some recomendations? Click below to see a recomendation based on your preferances.</p>
                 <button
-                  className="build-btn"
+                  className="rec-btn"
                   onClick={() => (window.location.href = "/buildhelper")}
                 >
                   Recomendations

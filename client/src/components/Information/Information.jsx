@@ -52,12 +52,12 @@ const Information = () => {
         >
           Services
         </button>
-        <button
+        {/* <button
           className="category-btn-4"
           onClick={() => (closeAll(), setKeycaps(true))}
         >
           Keycaps
-        </button>
+        </button> */}
       </div>
       {/* INFORMATION BY CATEGORY */}
       {layout ? (

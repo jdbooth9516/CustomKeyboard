@@ -5,7 +5,9 @@ import useForm from "../UseForm/UseForm";
 import "./Checkout.css";
 
 const Checkout = (props) => {
-  const { values, handleChange, handleSubmit } = useForm(() => {});
+  const { values, handleChange, handleSubmit } = useForm(() => {
+    createPaymentAccount(values);
+  });
   const [refresh, setRefresh] = useState(false);
   const [readyForSubmit, setReadyForSubmit] = useState(false);
 
@@ -28,9 +30,8 @@ const Checkout = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(props.cart);
     console.log(paymentAccount);
-  }, [refresh]);
+  }, [refresh, paymentAccount]);
 
   const getPaymentAccount = async () => {
     try {
@@ -43,6 +44,20 @@ const Checkout = (props) => {
       console.log(error.response);
     }
   };
+
+  function createPaymentAccount(values) { 
+    async function addPaymentAccountToDatabase(values) { 
+      values.User = props.cart.User;
+      try { 
+        const response = await axios.post("http://localhost:8000/PaymentAccount/", values
+        );
+        getPaymentAccount()
+      } catch (error) { 
+        console.log(error.response);
+      }
+    }
+    addPaymentAccountToDatabase(values)
+  }
 
   const sendOrder = async () => {
     try {
@@ -82,27 +97,39 @@ const Checkout = (props) => {
           <h5>Create New payment method</h5>
           <Form>
             <FormGroup>
-              <Label for="Username">User Name</Label>
+              <Label for="Address">Address</Label>
               <Input
                 type="text"
-                name="Username"
-                id="Username"
-                placeholder="User Name"
+                name="Address"
+                id="Address"
+                placeholder="Address"
                 defaultValue=""
                 onChange={handleChange}
-                value={values.Username}
+                value={values.Address}
               />
             </FormGroup>
             <FormGroup>
-              <Label for="Password">Password</Label>
+              <Label for="Card_number"> Card Number</Label>
               <Input
-                type="password"
-                name="Password"
-                id="Password"
-                placeholder="Password"
+                type="text"
+                name="Card_number"
+                id="Card_number"
+                placeholder="Card_number"
                 defaultValue=""
                 onChange={handleChange}
-                value={values.Password}
+                value={values.Card_number}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="Exp_date">Expiration Date</Label>
+              <Input
+                type="text"
+                name="Exp_date"
+                id="Exp_date"
+                placeholder="Expiration Date"
+                defaultValue=""
+                onChange={handleChange}
+                value={values.Exp_date}
               />
             </FormGroup>
             <button onClick={handleSubmit} className="reg-submit">
