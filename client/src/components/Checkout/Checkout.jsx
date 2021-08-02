@@ -15,6 +15,9 @@ const Checkout = (props) => {
   let payment = parseInt(props.cart.Price);
   const formatedPayment = parseInt(payment + "0" + "0");
   const body = {
+    User: props.cart.User,
+    Build: props.cart.Build,
+    Price: props.cart.Price,
     amount: formatedPayment,
   };
   const [paymentAccount, setPaymentAccount] = useState({});
@@ -39,7 +42,6 @@ const Checkout = (props) => {
         `http://localhost:8000/PaymentAccount/${props.cart.User}/`
       );
       setPaymentAccount(response.data[0]);
-      setReadyForSubmit(true);
     } catch (error) {
       console.log(error.response);
     }
@@ -65,6 +67,7 @@ const Checkout = (props) => {
       catalogOrder();
       props.setCheckoutVis(false);
       console.log("Order sent.");
+      alert("Order Sent")
     } catch (error) {
       console.log(error.response);
     }
@@ -132,7 +135,7 @@ const Checkout = (props) => {
                 value={values.Exp_date}
               />
             </FormGroup>
-            <button onClick={handleSubmit} className="reg-submit">
+            <button onClick={handleSubmit} className="info-btn">
               Add Payment Method
             </button>
           </Form>
@@ -145,6 +148,7 @@ const Checkout = (props) => {
                 className="info-btn"
                 onClick={() => {
                   getPaymentAccount();
+                  setReadyForSubmit(true)
                 }}
               >
                 Yes
