@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {Fade} from "@material-ui/core/";
 import axios from "axios";
 import "./Layout.css";
 
 const Layout = (props) => {
   const [layoutOptions, setLayoutOptions] = useState([]);
-  let fadeTrigger = true;
   let running_price = props.totalPrice
 
   useEffect(() => {
     getLayouts();
-    fadeTrigger = true;
   }, []);
 
   const getLayouts = async () => {

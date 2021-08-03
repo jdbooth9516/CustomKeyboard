@@ -54,6 +54,7 @@ const Checkout = (props) => {
         const response = await axios.post("http://localhost:8000/PaymentAccount/", values
         );
         getPaymentAccount()
+        setReadyForSubmit(true)
       } catch (error) { 
         console.log(error.response);
       }

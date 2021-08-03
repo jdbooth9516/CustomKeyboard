@@ -67,7 +67,7 @@ const BuildForm = (props) => {
                     value={values.Name}
                   />
                 </FormGroup>
-                <button onClick={handleSubmit}>Start</button>
+                <button  className =" reg-submit"onClick={handleSubmit}>Start</button>
               </Form>
             </div>
           </div>
