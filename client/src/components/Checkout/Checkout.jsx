@@ -96,6 +96,7 @@ const Checkout = (props) => {
           <h3>{props.cart.Build_name}</h3>
           <h5>{props.cart.Price}</h5>
         </div>
+        <div className="payment-section">
         <div>
           <h5>Create New payment method</h5>
           <Form>
@@ -140,9 +141,9 @@ const Checkout = (props) => {
             </button>
           </Form>
         </div>
-        <div className="payment-section">
           {!readyForSubmit ? (
             <div className="payment account">
+              <h4>Or</h4>
               <p>Use previous payment infomation</p>
               <button
                 className="info-btn"

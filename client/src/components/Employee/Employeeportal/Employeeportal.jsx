@@ -65,7 +65,7 @@ const Employeeportal = () => {
           <div>
             <SalesTable sold={sold} />
           </div>
-          <h4>Customer Interest</h4>
+          <h4>Customer Interest by Builds</h4>
           <div>
             <LayoutChart builds={builds} />
           </div>

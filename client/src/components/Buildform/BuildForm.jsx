@@ -6,7 +6,6 @@ import Extras from "../Extras/Extras";
 import ConfirmBuild from "../ConfirmBuild/ConfirmBuild";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import useForm from "../UseForm/UseForm";
-import { Fade } from '@material-ui/core';
 
 import "./BuildForm.css";
 
