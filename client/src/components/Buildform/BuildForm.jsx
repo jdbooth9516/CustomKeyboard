@@ -7,6 +7,7 @@ import ConfirmBuild from "../ConfirmBuild/ConfirmBuild";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import useForm from "../UseForm/UseForm";
 
+
 import "./BuildForm.css";
 
 const BuildForm = (props) => {
@@ -42,6 +43,7 @@ const BuildForm = (props) => {
     setWelcomeVis(false);
     setLayoutVis(true);
   }
+  
 
   console.log(nameChoice);
 
@@ -67,7 +69,7 @@ const BuildForm = (props) => {
                     value={values.Name}
                   />
                 </FormGroup>
-                <button  className =" reg-submit"onClick={handleSubmit}>Start</button>
+                <button  className =" reg-submit" onClick={handleSubmit}>Start</button>
               </Form>
             </div>
           </div>

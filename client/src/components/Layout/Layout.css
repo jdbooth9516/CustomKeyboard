@@ -1,9 +1,31 @@
-.Layout-container {
+@keyframes fadein {
+  0% {opacity: 0;
+  }
+  
+  100%{opacity: 100;
+  }
+
+}
+
+@keyframes slide {
+  from {margin-left: 50vh}
+  to   {margin-left: 0;}
+}
+
+
+@keyframes grow { 
+  from {transform: scale( 1, 1);}
+  to {transform: scale(1.5, 1.5);}
+}
+
+.layout-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 2em;
+  overflow: hidden;
+  animation: fadein 2s;
 }
 
 
@@ -12,6 +34,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  animation: slide .5s;
 }
 
 .layout-card {
@@ -20,7 +43,19 @@
   color: rgb(39, 39, 39);
   border-radius: 3px;
   margin: 1vh 1vw;
-  padding: 0.5em 1em;
+  min-width: 20vw;
+  transition: scale 1.5s;
+  transition: display 1.5s;
+}
+
+.layout-card:active {
+  animation: grow 1.5s;
+}
+
+.layout-hidden {
+ display: none;
+ max-height: 50vh;
+ z-index: 5000; 
 }
 
 .total-price { 

@@ -26,16 +26,25 @@ const Switches = (props) => {
   const goBack = () => { 
     let newTotal = props.totalPrice
     props.setTotalPrice(newTotal -= props.layoutPrice)
-    props.setSwitchVis(false);
-    props.setLayoutVis(true);
+    setTimeout ( () => {props.setSwitchVis(false);
+    props.setLayoutVis(true)}, 500);
   }
 
 
-  const switches = switchesOptions.map((switchs) => (
+  const switches = switchesOptions.map((switchs, index) => (
     <div
       className="layout-card"
       onClick={() => {
         handleChoice(switchs);
+      }}
+      onMouseEnter = {()=> {
+        const unhide = document.getElementById(`hidding-${index}`)
+        unhide.style.display = "block"; 
+      }}
+
+      onMouseLeave = {() => { 
+        const hide = document.getElementById(`hidding-${index}`)
+        hide.style.display = 'none';
       }}
     >
       <div className="layout-title">
@@ -43,6 +52,10 @@ const Switches = (props) => {
       </div>
       <div className="layout-body">
         <p>{switchs.Discription}</p>
+      </div>
+      <div className="layout-hidden" id={`hidding-${index}`}>
+        <h6>More Information:</h6>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sit, consequatur nobis eveniet voluptatum voluptatem ab temporibus fugiat eius mollitia!</p>
       </div>
       <div className="layout-price">
         <h5>$ {switchs.Price}</h5>
@@ -55,7 +68,7 @@ const Switches = (props) => {
       <div>
         <h2>Switches</h2>
       </div>
-      <div className="cards-container">{switches}</div>
+      <div className={`cards-container`}>{switches}</div>
       <div classname="total-price">
         <h3>Build Cost</h3>
         <h3>$ {props.totalPrice} </h3>

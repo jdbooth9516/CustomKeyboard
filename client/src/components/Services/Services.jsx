@@ -30,11 +30,20 @@ const Services = (props) => {
   }
 
 
-  const services = servicesOptions.map((service) => (
+  const services = servicesOptions.map((service, index) => (
     <div
       className="layout-card"
       onClick={() => {
         handleChoice(service);
+      }}
+      onMouseEnter = {()=> {
+        const unhide = document.getElementById(`hidding-${index}`)
+        unhide.style.display = "block"; 
+      }}
+
+      onMouseLeave = {() => { 
+        const hide = document.getElementById(`hidding-${index}`)
+        hide.style.display = 'none';
       }}
     >
       <div className="layout-title">
@@ -42,6 +51,10 @@ const Services = (props) => {
       </div>
       <div className="layout-body">
         <p>{service.Discription}</p>
+      </div>
+      <div className="layout-hidden" id={`hidding-${index}`}>
+        <h6>More Information:</h6>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sit, consequatur nobis eveniet voluptatum voluptatem ab temporibus fugiat eius mollitia!</p>
       </div>
       <div className="layout-price">
         <h5>$ {service.Price}</h5>
